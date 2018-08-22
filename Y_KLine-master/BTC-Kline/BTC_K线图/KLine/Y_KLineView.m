@@ -428,7 +428,7 @@
 #pragma mark 重绘
 - (void)reDraw
 {
-    NSLog(@"MainViewType-----:%d",self.MainViewType);
+  
     self.kLineMainView.MainViewType = self.MainViewType;
     //NSLog(@"targetLineStatus=====:%d",self.targetLineStatus);
     if(self.targetLineStatus >= 103)

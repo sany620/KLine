@@ -214,7 +214,6 @@
 - (void)drawKLineChart{
     
     [self clearLayer];
-  
     //如果数组为空，则不进行绘制，直接设置本view为背景
     if(!self.kLineModels || self.MainViewType == 0){
         return;
@@ -299,7 +298,6 @@
 - (void)drawBottomDateValue
 {
     __block NSMutableArray *positions = @[].mutableCopy;
-    
 
     [self.needDrawKLinePositionModels enumerateObjectsUsingBlock:^(Y_KLinePositionModel * _Nonnull positionModel, NSUInteger idx, BOOL * _Nonnull stop) {
         [positions addObject:[NSValue valueWithCGPoint:positionModel.ClosePoint]];
@@ -309,21 +307,17 @@
     [self.needDrawKLinePositionModels enumerateObjectsUsingBlock:^(Y_KLinePositionModel * _Nonnull positionModel, NSUInteger idx, BOOL * _Nonnull stop) {
         
         CGPoint point = [positions[idx] CGPointValue];
-        
         //日期
-        NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.needDrawKLineModels[idx].Date.doubleValue];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.needDrawKLineModels[idx].Date.doubleValue/1000];
         NSDateFormatter *formatter = [NSDateFormatter new];
         formatter.dateFormat = @"HH:mm:ss";
         NSString *dateStr = [formatter stringFromDate:date];
-       // NSLog(@"dateStr-----:%lu,%@",(unsigned long)idx,dateStr);
         
-        CGPoint drawDatePoint = CGPointMake(point.x + 1, Y_StockChartKLineMainViewMaxY + 1.5);
+        CGPoint drawDatePoint = CGPointMake(point.x - 0.5, Y_StockChartKLineMainViewMaxY);
         if(CGPointEqualToPoint(lastDrawDatePoint, CGPointZero) || point.x - lastDrawDatePoint.x > 60 ){
-//            [dateStr drawAtPoint:drawDatePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11],NSForegroundColorAttributeName : [UIColor assistTextColor]}];
-            
-            //NSLog(@"---ssssss-:%f",CGRectGetWidth([UIScreen mainScreen].bounds));
-            CGRect rect = CGRectMake(drawDatePoint.x, drawDatePoint.y, 60, Y_StockChartKLineMainViewMaxY);
-            CATextLayer * textLayer = [CATextLayer fl_getTextLayerWithString:dateStr textColor:[UIColor greenColor] fontSize:9.f backgroundColor:[UIColor clearColor] frame:rect];
+
+            CGRect rect = CGRectMake(drawDatePoint.x, drawDatePoint.y, 40, self.frame.size.height -Y_StockChartKLineMainViewMaxY);
+            CATextLayer * textLayer = [CATextLayer fl_getTextLayerWithString:dateStr textColor:[UIColor assistTextColor] fontSize:9.f backgroundColor:[UIColor clearColor] frame:rect];
             
             lastDrawDatePoint = drawDatePoint;
              [self.dateLayer addSublayer:textLayer];

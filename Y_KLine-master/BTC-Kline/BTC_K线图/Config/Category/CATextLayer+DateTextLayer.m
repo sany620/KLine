@@ -37,7 +37,7 @@
     //设置背景颜色
     textLayer.backgroundColor = bgColor.CGColor;
     //设置对齐方式
-    textLayer.alignmentMode = kCAAlignmentCenter;
+    textLayer.alignmentMode = kCAAlignmentLeft;
     //设置分辨率
     textLayer.contentsScale = [UIScreen mainScreen].scale;
     

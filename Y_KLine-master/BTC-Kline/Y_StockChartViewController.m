@@ -134,7 +134,6 @@
 {
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"type"] = self.type;
-    NSLog(@"=type===:%@",self.type);
     param[@"market"] = @"btc_usdt";
     param[@"size"] = @"1000";
     [NetWorking requestWithApi:@"http://api.bitkk.com/data/v1/kline" param:param thenSuccess:^(NSDictionary *responseObject) {
