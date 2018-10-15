@@ -173,7 +173,7 @@
            //判断涨跌颜色
             CGFloat MACD_EndH = volumePositionModel.EndPoint.y - volumePositionModel.StartPoint.y ;
             UIColor *macdColor = MACD_EndH >= 0 ? [UIColor decreaseColor] : [UIColor increaseColor];
-            CGRect macdFrame = CGRectMake(volumePositionModel.StartPoint.x, volumePositionModel.StartPoint.y,  [Y_StockChartGlobalVariable kLineWidth], volumePositionModel.EndPoint.y - volumePositionModel.StartPoint.y );
+            CGRect macdFrame = CGRectMake(volumePositionModel.StartPoint.x, volumePositionModel.StartPoint.y,  [Y_StockChartGlobalVariable kLineWidth], MACD_EndH );
             CAShapeLayer *layer = [CAShapeLayer fl_getRectangleLayerWithFrame:macdFrame backgroundColor:macdColor];
             [self.macdLayer addSublayer:layer];
             

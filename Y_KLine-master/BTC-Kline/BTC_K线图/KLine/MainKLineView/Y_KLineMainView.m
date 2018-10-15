@@ -249,7 +249,7 @@
         
         [self.layer addSublayer:self.timeLineLayer];
         
-        [self drawBottomDateValue];
+       // [self drawBottomDateValue];
     }
     
     if (self.targetLineStatus == Y_StockChartTargetLineStatusBOLL) {

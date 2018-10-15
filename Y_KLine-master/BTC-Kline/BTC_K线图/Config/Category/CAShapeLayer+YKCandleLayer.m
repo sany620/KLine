@@ -26,11 +26,10 @@
     CGPoint candlePoint = CGPointMake(isRed ? model.ClosePoint.x : model.OpenPoint.x, isRed ? model.ClosePoint.y : model.OpenPoint.y);
     
     CGRect candleFrame = CGRectMake(candlePoint.x - candleWidth/2 , candlePoint.y, candleWidth, ABS(model.OpenPoint.y - model.ClosePoint.y));
-    //    NSLog(@"%@",NSStringFromCGRect(candleFrame));
     
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:candleFrame];
     
-    //    //绘制上下影线
+   //绘制上下影线
     [path moveToPoint:model.LowPoint];
     [path addLineToPoint:model.HighPoint];
     
@@ -48,15 +47,11 @@
         layer.strokeColor = [UIColor decreaseColor].CGColor;
         layer.fillColor = [UIColor decreaseColor].CGColor;
     } 
-//    else {
-//        //十字线，设置灰色
-//        layer.strokeColor = [UIColor crossColor].CGColor;
-//        layer.fillColor = [UIColor crossColor].CGColor;
-//    }
     return layer;
 }
 
 + (CAShapeLayer *)fl_getRectangleLayerWithFrame:(CGRect)rectangleFrame backgroundColor:(UIColor *)bgColor {
+    
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:rectangleFrame];
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.path = path.CGPath;
